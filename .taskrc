@@ -1,0 +1,83 @@
+# [Created by task 2.2.0 2/6/2014 21:30:12]
+# Taskwarrior program configuration file.
+# For more documentation, see http://taskwarrior.org or try 'man task', 'man task-faq',
+# 'man task-tutorial', 'man task-color', 'man task-sync' or 'man taskrc'
+
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# Use the command 'task show' to see all defaults and overrides
+
+# Files
+data.location=~/.task
+
+# Color theme (uncomment one to use)
+# include /usr/share/doc/task/rc/light-16.theme
+# include /usr/share/doc/task/rc/light-256.theme
+# include /usr/share/doc/task/rc/dark-16.theme
+# include /usr/share/doc/task/rc/dark-256.theme
+# include /usr/share/doc/task/rc/dark-red-256.theme
+# include /usr/share/doc/task/rc/dark-green-256.theme
+# include /usr/share/doc/task/rc/dark-blue-256.theme
+# include /usr/share/doc/task/rc/dark-violets-256.theme
+# include /usr/share/doc/task/rc/dark-yellow-green.theme
+# include /usr/share/doc/task/rc/dark-gray-256.theme
+
+
+####################################################################################################
+dateformat              = Y/M/D
+dateformat.holiday      = YMD
+dateformat.annotation   = Y/M/D H:N
+dateformat.edit         = Y/M/D H:N
+dateformat.info         = Y/M/D
+dateformat.report       = Y/M/D
+color                   = off
+defaultheight           = 24
+defaultwidth            = 500
+default.command         = default
+
+####################################################################################################
+
+report.all.columns=id,status,project,priority.long,due,end,start.active,entry.age,description
+report.all.description=Lists all pending and completed tasks
+report.all.filter=status.not:deleted
+report.all.labels=ID,Status,Project,Priority,Due,Completed,Active,Age,Description
+report.all.sort=end+,start+
+
+report.long.columns=id,project,priority.long,entry,start,due,recur,due.countdown,entry.age,depends,tags,description
+report.long.description=Lists all pending tasks
+report.long.filter=status:pending
+report.long.labels=ID,Project,Priority,Added,Started,Due,Recur,Countdown,Age,Deps,Tags,Description
+report.long.sort=start+
+
+report.completed.columns=end,project,description.truncated,uuid
+report.completed.description=Lists completed tasks
+report.completed.filter=status:completed
+report.completed.labels=Complete,Project,Description,UUID
+report.completed.sort=end+,start+
+
+report.list.columns=id,priority.long,project,due,start.active,entry.age,description
+report.list.description=Lists all pending tasks
+report.list.filter=status:pending
+report.list.labels=ID,Priority,Project,Due,Active,Age,Description
+report.list.sort=start+
+
+report.ls.columns=id,priority.long,project,description
+report.ls.description=Minimal listing of all pending tasks
+report.ls.filter=status:pending
+report.ls.labels=ID,Priority,Project,Description
+report.ls.sort=start+
+
+report.waiting.columns=id,priority.long,project,description.truncated
+report.waiting.description=Lists all waiting tasks
+report.waiting.filter=status:waiting
+report.waiting.labels=ID,Priority,Project,Description
+report.waiting.sort=start+
+
+report.default.columns=id,priority.long,project,description.truncated
+report.default.description=Minimal listing of all pending tasks
+report.default.filter=status:pending
+report.default.labels=ID,Priority,Project,Description
+report.default.sort=start+

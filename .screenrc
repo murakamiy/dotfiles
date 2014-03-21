@@ -1,0 +1,24 @@
+msgwait             7
+msgminwait          0
+chdir
+altscreen           on
+autodetach          on
+startup_message     off
+# defwrap             off
+hardstatus          off
+defscrollback       1000
+compacthist         on
+defencoding         sjis
+encoding            sjis sjis
+shelltitle          BASH
+escape              ^tt
+bind                q       quit
+term                xterm-256color
+
+caption always "%?%F%{kb}%:%{kb}%? %-w%?%F%{wb}%:%{wb}%?%n %t%?%F%{kb}%:%{kb}%?%+w %?%F%{wb}%:%{bb}%?%=     %m/%d %c"
+bindkey -k k4 next
+bindkey -k k3 focus
+
+# screen
+# screen
+# select 0

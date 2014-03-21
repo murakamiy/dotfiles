@@ -1,0 +1,8 @@
+[gui]
+	encoding = utf-8
+# 	encoding = shiftjis
+[i18n]
+	commitEncoding = utf-8
+# 	commitEncoding = shiftjis
+	logOutputEncoding = utf-8
+# 	logOutputEncoding = shiftjis

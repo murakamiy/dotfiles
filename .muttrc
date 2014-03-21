@@ -1,0 +1,75 @@
+# Gmail
+set hostname  = "gmail.com"
+set folder    = "imaps://imap.gmail.com/"
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
+
+source ~/.mutt/gmail-account.muttrc
+# set imap_user = "USER_NAME@gmail.com"
+# set imap_pass = "PASSWORD"
+# set from      = $imap_user
+# set realname  = "REALNAME"
+# set smtp_url = "smtps://USER_NAME@smtp.gmail.com/"
+# set smtp_pass = $imap_pass
+
+# custom variable
+set my_imap_folder  = $folder
+set my_local_folder = "~"
+set my_local_file   = "email.txt"
+set my_email_saved  = "$my_local_folder/$my_local_file"
+
+# keybind
+macro pager         s "\
+<enter-command>set folder = $my_local_folder<enter>\
+<decode-copy>=$my_local_file<enter><enter>\
+<enter-command>set folder = $my_imap_folder<enter>\
+<enter-command>set ?my_email_saved<enter>"                          "Save message to local folder"
+
+macro index         gi "<change-folder>=INBOX<enter>"               "Go to INBOX"
+macro index         ga "<change-folder>=[Gmail]/All Mail<enter>"    "Go to All Mail"
+macro index         gs "<change-folder>=[Gmail]/Sent Mail<enter>"   "Go to Sent Mail"
+macro index         gd "<change-folder>=[Gmail]/Drafts<enter>"      "Go to Drafts"
+macro index         gp "<change-folder>=[Gmail]/Spam<enter>"        "Go to Spam"
+macro index         gt "<change-folder>=[Gmail]/Trash<enter>"       "Go to Trash"
+macro index,pager   gx "<save-message>=[Gmail]/Trash<enter>"        "Move message to Trash"
+bind  index,pager  <space>  next-page
+bind  index,pager  b        previous-page
+bind  index,pager  R        group-reply
+bind  index        <tab>    sync-mailbox
+bind  index        gg       first-entry
+bind  index        G        last-entry
+bind  index        j        next-entry
+bind  index        k        previous-entry
+bind  index        J        next-undeleted
+bind  index        K        previous-undeleted
+bind  pager        gg       top
+bind  pager        G        bottom
+bind  pager        j        next-line
+bind  pager        k        previous-line
+bind  editor       <space>  noop
+
+# color scheme
+# source ~/.mutt/color_scheme/mutt-colors-solarized-dark-16.muttrc
+source ~/.mutt/color_scheme/mutt-colors-solarized-light-16.muttrc
+# source ~/.mutt/color_scheme/mutt-colors-solarized-dark-256.muttrc
+# source ~/.mutt/color_scheme/mutt-colors-solarized-light-256.muttrc
+
+set record                 = ""
+set sendmail               = "/usr/local/bin/msmtp -oem -oi"
+set date_format            = "%m/%d %H:%M"
+set index_format           = "[%Z]  %D  %-30.30F  %s"
+set header_cache           =  ~/.mutt/cache/headers
+set message_cachedir       =  ~/.mutt/cache/bodies
+set certificate_file       =  ~/.mutt/certificates
+set signature              =  ~/.mutt/signature
+set ssl_starttls           =  yes
+set ssl_force_tls          =  yes
+set mail_check             =  1800
+set timeout                =  300
+set imap_idle              =  no
+set imap_keepalive         =  300
+set imap_check_subscribed  =  yes
+set editor                 =  "vim"
+set sort                   =  reverse-date
+set pager_stop             =  yes
+set quit                   =  ask-no
