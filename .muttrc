@@ -6,10 +6,17 @@ set postponed = "+[Gmail]/Drafts"
 
 source ~/.mutt/gmail-account.muttrc
 # set imap_user = "USER_NAME@gmail.com"
-# set imap_pass = "PASSWORD"
 # set from      = $imap_user
 # set realname  = "REALNAME"
 # set smtp_url = "smtps://USER_NAME@smtp.gmail.com/"
+
+# https://security.google.com/settings/security/apppasswords
+# gpg --gen-key
+# gpg -r foobar@gmail.com -e ~/.mutt/gmail-password.muttrc
+# shred                      ~/.mutt/gmail-password.muttrc
+# rm                         ~/.mutt/gmail-password.muttrc
+source "gpg -d ~/.mutt/gmail-password.muttrc.gpg |"
+# set imap_pass = "PASSWORD"
 # set smtp_pass = $imap_pass
 
 # custom variable
