@@ -332,18 +332,6 @@ function CommentOutToggleSql()
 
 endfunction
 
-function MoveCursor()
-
-    let s:line = line("'\"")
-
-    if  s:line > 0 && s:line <= line("$")
-        call cursor(s:line, 0)
-    endif
-
-    unlet s:line
-
-endfunction
-
 function MyTabLine()
     let s = ''
     for i in range(tabpagenr('$'))
@@ -374,4 +362,16 @@ function MyTabLabel(n)
     return strpart(arr[-1], 0, width)
 endfunction
 
-autocmd BufReadPost * :call MoveCursor()
+set viewoptions=cursor
+function SaveView()
+    if expand('%') != '' && &buftype !~ 'nofile'
+        mkview
+    endif
+endfunction
+function LoadView()
+    if expand('%') != '' && &buftype !~ 'nofile'
+        silent loadview
+    endif
+endfunction
+autocmd BufWinLeave * :call SaveView()
+autocmd BufWinEnter * :call LoadView()
